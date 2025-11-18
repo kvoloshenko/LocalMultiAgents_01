@@ -1,4 +1,13 @@
-# 📄 Описание задачи: Система AI для ускорения подготовки документов (Drafter)
+# 📄 Система AI для ускорения подготовки документов (Drafter)
+
+---
+### Примечание: Использованы материалы учебного курса:
+
+https://www.youtube.com/watch?v=jGg_1h0qzaM
+
+https://github.com/iamvaibhavmehra/LangGraph-Course-freeCodeCamp
+
+---
 
 ## 🎯 Цель
 
@@ -79,6 +88,12 @@ https://docs.langchain.com/langsmith/quick-start-studio
 
 ![LangGraphStudio_01.png](Images/LangGraphStudio_01.png)
 
-## API Key
-https://smith.langchain.com/o/821f31c1-061e-55d7-81df-54766bb0b1d9/settings/apikeys
+
+---
+
+### Примечание: Использованы материалы учебного курса:
+
+https://www.youtube.com/watch?v=jGg_1h0qzaM
+
+https://github.com/iamvaibhavmehra/LangGraph-Course-freeCodeCamp
 
