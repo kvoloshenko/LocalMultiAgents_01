@@ -99,4 +99,7 @@ model = ChatOllama(model="qwen3:latest")
 
 Все примеры демонстрируют зрелость экосистемы для построения production-готовых AI-решений на базе локальных моделей.
 
+---
+Python 3.11
 
+pip install -U "langgraph-cli[inmem]"

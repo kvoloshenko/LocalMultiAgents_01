@@ -1,0 +1,9 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": ["."],
+  "graphs": {
+    "app": "Agent_04_Drafter:graph"
+  },
+  "env": ".env",
+  "image_distro": "wolfi"
+}
