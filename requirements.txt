@@ -20,6 +20,7 @@ importlib_metadata==8.7.0
 jsonpatch==1.33
 jsonpointer==3.0.0
 jsonschema_rs==0.29.1
+langchain==1.0.5
 langchain-core==1.0.5
 langchain-ollama==0.3.10
 langgraph==1.0.3

@@ -32,6 +32,10 @@ model = ChatOllama(model="qwen3:latest")
 
 **Архитектура:** Одиночный агент с инструментами
 
+см. подробнее здесь: [README.md](Python/Agent_04_Drafter/README.md)
+
+Папка с кодом здесь: [Agent_04_Drafter](Python/Agent_04_Drafter)
+
 ### supervisor_math_research.py - Мульти-агентная система с супервизором
 **Что реализовано:** Система для решения математических и исследовательских задач
 
@@ -55,6 +59,11 @@ model = ChatOllama(model="qwen3:latest")
 - **Хранилище состояния**: `InMemorySaver` для сохранения контекста диалога
 
 **Архитектура:** Децентрализованная сеть равноправных агентов
+
+см. подробнее здесь: [README.md](Python/Supervisor/README.md)
+
+Папка с кодом здесь: [Supervisor](Python/Supervisor)
+
 
 ## 1.3 Что такое AI Agent
 
@@ -101,5 +110,7 @@ model = ChatOllama(model="qwen3:latest")
 
 ---
 Python 3.11
+
+[requirements.txt](requirements.txt)
 
 pip install -U "langgraph-cli[inmem]"

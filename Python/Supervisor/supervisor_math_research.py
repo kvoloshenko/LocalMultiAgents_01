@@ -12,8 +12,11 @@ from dotenv import load_dotenv      # Для загрузки переменны
 # ===================================================
 
 from langchain_ollama import ChatOllama          # Интерфейс взаимодействия с локальными LLM (Ollama)
+# from langgraph_supervisor import create_supervisor  # Создание супервизора агентов
+# from langgraph.prebuilt import create_react_agent   # Готовый ReAct-агент
 from langgraph_supervisor import create_supervisor  # Создание супервизора агентов
-from langgraph.prebuilt import create_react_agent   # Готовый ReAct-агент
+from langchain.agents import create_agent           # Новый агент на базе LangChain/LangGraph
+
 
 # ============================================================
 # Загрузка переменных окружения (например, ключей LangSmith)
@@ -69,22 +72,36 @@ def web_search(query: str) -> str:
 # Создаём ReAct-агента для математических задач
 # =============================================
 
-math_agent = create_react_agent(
+# math_agent = create_react_agent(
+#     model=model,              # LLM, управляющая агентом
+#     tools=[add, multiply],    # Инструменты: сложение и умножение
+#     name="math_expert",       # Имя агента
+#     prompt="You are a math expert. Always use one tool at a time."  # Системный промт
+# )
+
+math_agent = create_agent(
     model=model,              # LLM, управляющая агентом
     tools=[add, multiply],    # Инструменты: сложение и умножение
     name="math_expert",       # Имя агента
-    prompt="You are a math expert. Always use one tool at a time."  # Системный промт
+    system_prompt="You are a math expert. Always use one tool at a time."  # Системный промт
 )
 
 # ======================================================
 # Создаём ReAct-агента для исследовательских запросов
 # ======================================================
 
-research_agent = create_react_agent(
+# research_agent = create_react_agent(
+#     model=model,
+#     tools=[web_search],       # Инструмент: поиск в интернете (симуляция)
+#     name="research_expert",
+#     prompt="You are a world class researcher with access to web search. Do not do any math."
+# )
+
+research_agent = create_agent(
     model=model,
     tools=[web_search],       # Инструмент: поиск в интернете (симуляция)
     name="research_expert",
-    prompt="You are a world class researcher with access to web search. Do not do any math."
+    system_prompt="You are a world class researcher with access to web search. Do not do any math."
 )
 
 # ==================================================
