@@ -1,106 +1,69 @@
+# 🧠 Fully Local Multi-Agent System (Supervisor) на Qwen3 + LangGraph
 
-# **Fully Local Multi-Agent System (Supervisor) на Qwen3 + LangGraph**
-Supervisor — строгий контроль
-
-~~
-# Команды
-```bash
-
-cmd
-
-cd venv\Scripts
-
-activate
-
-cd ..\..\Python\Supervisor
-
-pip install -U "langgraph-cli[inmem]"
-
-python.exe supervisor_math_research.py
- 
-langgraph dev
-```
-
-## Отладка
-https://smith.langchain.com/o/821f31c1-061e-55d7-81df-54766bb0b1d9/projects/p/96eab2ce-e0cf-42a1-a8c0-eea372f782c6?timeModel=%7B%22duration%22%3A%227d%22%7D
-
-https://docs.langchain.com/langsmith/quick-start-studio
-
-![graph.png](Images/graph.png)
-
-![DeBug_01.png](Images/DeBug_01.png)
-
-![LangGraphStudio_01.png](Images/LangGraphStudio_01.png)
-
-![LangGraphStudio_02.png](Images/LangGraphStudio_02.png)
+**Supervisor — строгий контроль над мультиагентной системой**
 
 ---
 
-
-
-### *Полное руководство для новичков*
-
-Этот проект демонстрирует, как построить **локальную мультиагентную систему** с архитектурой **Supervisor**, используя:
-
-* **Ollama** (локальная LLM, модель `qwen3:latest`)
-* **LangGraph Supervisor**
-* **ReAct-агенты** с инструментами
-* **Полностью локальное выполнение**
-* **Визуализацию графа через Mermaid**
-* **Интеграцию с LangSmith (опционально)**
-
-Проект основан на материале:
-🎥 *“Fully Local Multi-Agent Systems with LangGraph”* — [https://www.youtube.com/watch?v=4oC1ZKa9-Hs](https://www.youtube.com/watch?v=4oC1ZKa9-Hs)
-📘 LangGraph swarm: [https://github.com/langchain-ai/langgraph-swarm-py](https://github.com/langchain-ai/langgraph-swarm-py)
-📘 LangGraph supervisor: [https://github.com/langchain-ai/langgraph-supervisor-py](https://github.com/langchain-ai/langgraph-supervisor-py)
-📝 Video notes: [https://mirror-feeling-d80.notion.site/](https://mirror-feeling-d80.notion.site/)...
+> Основано на материале:  
+> 🎥 “Fully Local Multi-Agent Systems with LangGraph” — https://www.youtube.com/watch?v=4oC1ZKa9-Hs  
+> 📘 LangGraph Swarm: https://github.com/langchain-ai/langgraph-swarm-py  
+> 📘 LangGraph Supervisor: https://github.com/langchain-ai/langgraph-supervisor-py  
+> 📝 Конспект: https://mirror-feeling-d80.notion.site/...
 
 ---
 
-# 📌 Описание проекта
+## 📌 Описание проекта
 
-В этом репозитории реализована **мультиагентная система** из двух агентов:
+Этот пример демонстрирует, как построить **локальную мультиагентную систему** с архитектурой **Supervisor**, используя:
+
+- 🧠 **Ollama** (локальная LLM `qwen3:latest`)
+- 🧩 **LangGraph Supervisor** (`langgraph_supervisor`)
+- 🔄 **ReAct-агентов** с инструментами
+- 🖼 **Визуализацию графа** (Mermaid → PNG через Pillow)
+- 🧪 **Интеграцию с LangSmith** (опционально)
+
+В системе есть два агента и Supervisor:
 
 1. **research_agent**
-   — выполняет имитацию поиска в интернете и умеет находить данные о компании (через инструмент `web_search`).
+   - выполняет имитацию поиска в интернете;
+   - через инструмент `web_search(query)` возвращает данные о компаниях.
 
 2. **math_agent**
-   — проводит вычисления (через инструменты `add` и `multiply`).
+   - решает математические задачи;
+   - через инструменты:
+     - `add(a, b)`
+     - `multiply(a, b)`
 
-Управляет ими **Supervisor**, который решает:
+**Supervisor** решает:
 
-* если запрос связан с фактами → отправить к research_agent
-* если запрос связан с вычислением → отправить к math_agent
+- если запрос связан с фактами / данными → отправить в `research_agent`;
+- если запрос связан с вычислением → отправить в `math_agent`.
 
-🎯 Пример задачи, решаемой системой:
+🎯 Пример задачи:
 
 > "What’s the combined headcount of the FAANG companies in 2024?"
 
-Supervisor вызывает research_agent → получает данные → отправляет их math_agent → тот суммирует.
+Supervisor → research_agent (`web_search`) → Supervisor → math_agent (`add`) → итоговая сумма.
 
 ---
 
-# 🧠 Что такое мультиагентная система?
+## 🧠 Что даёт архитектура Supervisor
 
-Когда одна модель делает всё сама → она:
+Когда одна LLM делает всё:
 
-* вызывает неправильные инструменты
-* путается в контексте
-* делает неверные шаги рассуждений
+- она может вызвать неправильный инструмент;
+- «забыть» контекст;
+- запутаться в шагах рассуждений.
 
-Поэтому мы **разделяем ответственность между агентами**.
+Решение — **разделить ответственность**:
 
-В этом проекте:
-
-* **research_agent** знает только про “поиск данных”
-* **math_agent** знает только про “математику”
-* **Supervisor** знает, кого когда вызвать
+- `research_agent` отвечает за поиск и текстовые факты;
+- `math_agent` отвечает за арифметику;
+- **Supervisor** управляет **кто, когда и что делает**.
 
 ---
 
-# 🧩 Архитектура Supervisor
-
-Supervisor всегда принимает решение, какой агент должен ответить.
+## 🧩 Архитектура Supervisor
 
 ```mermaid
 flowchart TD
@@ -110,137 +73,196 @@ flowchart TD
     A1 --> S
     A2 --> S
     S --> U
-```
+````
 
 ✔ строгий контроль
-✔ подходит для бизнес-систем
-✔ предотвращает хаос в больших проектах
+✔ понятная маршрутизация запросов
+✔ подходит для бизнес-систем и продакшн-сценариев
 
 ---
 
-# 📂 Структура репозитория
+## 📂 Структура папки
 
-```
-supervisor_math_research.py
-Images/
-   graph.png
-.env 
-README.md
+```text
+Python/Supervisor
+├─ supervisor_math_research.py
+├─ Images
+│  ├─ graph.png
+│  ├─ DeBug_01.png
+│  ├─ LangGraphStudio_01.png
+│  └─ LangGraphStudio_02.png
+└─ README.md
 ```
 
 ---
 
-# 🚀 Функционал кода (кратко)
+## 🔧 Краткий обзор кода
 
-### Подключение модели
+### Инициализация модели
 
 ```python
+from langchain_ollama import ChatOllama
 model = ChatOllama(model="qwen3:latest")
 ```
 
-### Инструменты агентов
+### Инструменты
 
 ```python
-def add(a, b)
-def multiply(a, b)
-def web_search(query)
+def add(a: float, b: float) -> float: ...
+def multiply(a: float, b: float) -> float: ...
+def web_search(query: str) -> str: ...
 ```
 
-### Создание агентов
+`web_search` имитирует реальный веб-поиск и возвращает подготовленный текст про FAANG.
+
+### Агенты
 
 ```python
-math_agent = create_react_agent(...)
-research_agent = create_react_agent(...)
+from langgraph.prebuilt import create_react_agent
+
+math_agent = create_react_agent(
+    model=model,
+    tools=[add, multiply],
+    name="math_expert",
+    prompt="You are a math expert. Always use one tool at a time."
+)
+
+research_agent = create_react_agent(
+    model=model,
+    tools=[web_search],
+    name="research_expert",
+    prompt="You are a world class researcher with access to web search. Do not do any math."
+)
 ```
 
-### Создание Supervisor
+### Supervisor
 
 ```python
-workflow = create_supervisor([research_agent, math_agent], ...)
+from langgraph_supervisor import create_supervisor
+
+workflow = create_supervisor(
+    [research_agent, math_agent],
+    model=model,
+    prompt=(
+        "You are a team Supervisor managing a research expert and a math expert. "
+        "For current events, use research_agent. "
+        "For math problems, use math_agent."
+    )
+)
+
+app = workflow.compile()
 ```
 
 ### Визуализация графа
 
 ```python
 graph_bytes = app.get_graph().draw_mermaid_png()
+image = PILImage.open(BytesIO(graph_bytes))
 image.show()
 ```
 
-### Запрос к системе
+### Вызов системы
 
 ```python
-result = app.invoke({ "messages": [ ... ] })
+result = app.invoke({
+    "messages": [
+        {"role": "user", "content": "what's the combined headcount of the FAANG companies in 2024?"}
+    ]
+})
+
+for m in result["messages"]:
+    m.pretty_print()
 ```
 
 ---
 
-# 📥 Установка и запуск
+## 📦 Требования и установка
 
-## 1. Установить зависимости
+### 1. Системные требования
 
-```bash
-pip install -U "langgraph-cli[inmem]"
-pip install python-dotenv pillow
-```
-
-## 2. Убедиться, что Ollama установлена
-
-[https://ollama.com/download](https://ollama.com/download)
-
-Загрузить Qwen3:
+* Python **3.11**
+* Установленный **Ollama**
+* Локальная модель:
 
 ```bash
 ollama pull qwen3:latest
 ```
 
-## 3. Активировать виртуальное окружение
+### 2. Установка зависимостей
+
+(из корня репозитория)
 
 ```bash
-cd C:\_AI\NoSpamTelegram_02\venv\Scripts
-activate
-```
+cd C:\_AI\LocalMultiAgents_01
 
-## 4. Запустить проект
-
-```bash
-cd C:\_AI\NoSpamTelegram_02\Python\04_Fully_Local_Multi_Agent\supervisor
-python.exe supervisor_math_research.py
+pip install -r requirements.txt
+pip install -U "langgraph-cli[inmem]"
+pip install python-dotenv pillow
 ```
 
 ---
 
-# 🖥 Местная визуализация LangGraph Studio
+## 🚀 Запуск проекта
 
-Отдельная команда:
+### Шаг 1. Активация виртуального окружения (Windows)
+
+```bash
+cd C:\_AI\LocalMultiAgents_01\venv\Scripts
+activate
+cd ..\..
+```
+
+### Шаг 2. Переход в папку Supervisor и запуск
+
+```bash
+cd Python\Supervisor
+
+python.exe supervisor_math_research.py
+```
+
+После запуска:
+
+* откроется PNG с графом агентов;
+* в консоль выведется детальный диалог (включая tool-calls).
+
+---
+
+## 🧪 LangGraph Studio
+
+Для визуальной отладки мультиагентного графа:
 
 ```bash
 langgraph dev
 ```
 
-Откроется веб-интерфейс:
+Features:
 
-* граф агента
-* логи
-* состояние степов
-* детальные вызовы инструментов
+* визуальный граф агентов и переходов;
+* наблюдение за сообщениями и состояниями;
+* ручной запуск и отладка сценариев.
 
 ---
 
-# 🐞 Отладка через LangSmith (опционально)
+## 🐞 Отладка через LangSmith (опционально)
 
-Если включить переменные окружения:
+В `.env` можно указать:
 
-```
+```env
 LANGSMITH_API_KEY=...
 LANGCHAIN_TRACING_V2=true
-LANGCHAIN_PROJECT=multi-agent-demo
+LANGCHAIN_PROJECT=multi-agent-supervisor-demo
 ```
 
-Вы получите красивую трассировку:
+После этого:
 
-🔗 [https://smith.langchain.com/](https://smith.langchain.com/)
+* все шаги выполнения будут доступны в веб-интерфейсе LangSmith;
+* можно видеть цепочку вызовов Supervisor → Agents → Tools.
 
-Скриншоты примеров:
+Пример ссылки (шаблон):
+
+* [https://smith.langchain.com/](https://smith.langchain.com/)...
+
+Скриншоты:
 
 ![graph.png](Images/graph.png)
 
@@ -252,58 +274,13 @@ LANGCHAIN_PROJECT=multi-agent-demo
 
 ---
 
+## 🎯 Итоги
 
-# 🧪 Пример работы
+Этот пример показывает:
 
-Запрос:
+* как создать двух агентов с разными ролями;
+* как управлять ими через Supervisor;
+* как использовать локальные модели (Qwen3) через Ollama;
+* как визуализировать и отлаживать мультиагентный граф (LangGraph Studio + LangSmith).
 
-> “What’s the combined headcount of the FAANG companies in 2024?”
-
-Последовательность:
-
-1. Supervisor → отправляет в **research_agent**
-2. research_agent → вызывает tool **web_search**
-3. Supervisor → отправляет результаты в **math_agent**
-4. math_agent → вызывает tool **add**
-5. Система возвращает итоговую сумму
-
----
-
-### Примечание: Использованы материалы 
-
-#### Основные репозитории
-
-* Supervisor: [https://github.com/langchain-ai/langgraph-supervisor-py](https://github.com/langchain-ai/langgraph-supervisor-py)
-* Swarm: [https://github.com/langchain-ai/langgraph-swarm-py](https://github.com/langchain-ai/langgraph-swarm-py)
-
-#### Видео
-
-[https://www.youtube.com/watch?v=4oC1ZKa9-Hs](https://www.youtube.com/watch?v=4oC1ZKa9-Hs)
-
-#### Конспект лекции
-
-[https://mirror-feeling-d80.notion.site/Fully-Local-Multi-Agent](https://mirror-feeling-d80.notion.site/Fully-Local-Multi-Agent)...
-
----
-
-# 🎯 Итоги
-
-Этот проект показывает:
-
-✔ как создать двух агентов с инструментами
-
-✔ как управлять ими через Supervisor
-
-✔ как использовать локальные модели (Qwen3)
-
-✔ как визуализировать граф
-
-✔ как запускать проект в LangGraph Studio
-
-✔ как отлаживать вызовы через LangSmith
-
-
-
-
-
-
+Это хороший шаблон для **продакшн-ориентированных** мультиагентных систем с жёстким контролем маршрутизации.
