@@ -55,7 +55,91 @@
   ```bash
   ollama pull qwen3:latest
 
+---
 
+## 🔧 Краткий обзор кода
+
+### Состояние (`AgentState`)
+
+```python
+class AgentState(TypedDict):
+    messages: Annotated[Sequence[BaseMessage], add_messages]
+```
+
+* В `messages` хранится история диалога (Human / AI / Tool / System сообщения).
+* `add_messages` аккуратно дописывает новые сообщения в историю.
+
+### Инструменты агента
+
+```python
+@tool
+def update(content: str) -> str:
+    ...
+
+@tool
+def save(filename: str) -> str:
+    ...
+```
+
+* `update` — обновляет глобальную переменную `document_content`.
+* `save` — сохраняет `document_content` в файл и сообщает путь пользователю.
+
+### Основная функция агента
+
+```python
+def our_agent(state: AgentState) -> AgentState:
+    ...
+```
+
+* Строит **SystemMessage** с описанием роли агента:
+
+  * агент говорит по-русски;
+  * использует `update` для изменения текста;
+  * использует `save` для завершения работы.
+* Если сообщений ещё нет — агент сам инициирует первый запрос.
+* Далее спрашивает пользователя (`input`) и отправляет всё в модель.
+
+### Условие завершения
+
+```python
+def should_continue(state: AgentState) -> str:
+    ...
+```
+
+* Анализирует историю `messages`.
+* Если находится `ToolMessage` с подтверждением сохранения документа — возвращает `"end"`.
+* Иначе — `"continue"`.
+
+### Граф LangGraph
+
+```python
+graph = StateGraph(AgentState)
+graph.add_node("agent", our_agent)
+graph.add_node("tools", ToolNode(tools))
+graph.set_entry_point("agent")
+graph.add_edge("agent", "tools")
+graph.add_conditional_edges("tools", should_continue, {"continue": "agent", "end": END})
+app = graph.compile()
+```
+
+* Узлы: `agent` и `tools`.
+* Цикл: `agent → tools → agent` до тех пор, пока `should_continue` не вернёт `"end"`.
+
+---
+
+## 🖼 Визуализация графа
+
+В конце файла:
+
+```python
+graph_bytes = app.get_graph().draw_mermaid_png()
+image = PILImage.open(BytesIO(graph_bytes))
+image.show()
+```
+
+* Граф (Mermaid) компилируется в PNG и открывается в стандартном просмотрщике изображений.
+
+---
 
 ## 💻 Запуск проекта
 
