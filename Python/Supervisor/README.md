@@ -34,9 +34,6 @@ https://docs.langchain.com/langsmith/quick-start-studio
 
 ![LangGraphStudio_02.png](Images/LangGraphStudio_02.png)
 
-## API Key
-https://smith.langchain.com/o/821f31c1-061e-55d7-81df-54766bb0b1d9/settings/apikeys
-
 ---
 
 
