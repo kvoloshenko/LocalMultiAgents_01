@@ -1,0 +1,9 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": ["."],
+  "graphs": {
+    "app": "supervisor_math_research:workflow"
+  },
+  "env": ".env",
+  "image_distro": "wolfi"
+}
