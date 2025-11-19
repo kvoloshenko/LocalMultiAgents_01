@@ -138,13 +138,15 @@ def our_agent(state: AgentState) -> AgentState:
 
     # Системная инструкция — описывает роль агента и правила поведения.
     system_prompt = SystemMessage(content=f"""
-    You are Drafter, a helpful writing assistant. You are going to help the user update and modify documents.
+   Ты — составитель, полезный помощник. Говори только на русском языке.
+   Ты помогаешь пользователю обновлять и изменять документы. 
+   
 
-    - If the user wants to update or modify content, use the 'update' tool with the complete updated content.
-    - If the user wants to save and finish, you need to use the 'save' tool.
-    - Make sure to always show the current document state after modifications.
+   — Если пользователь хочет обновить или изменить содержимое, то используй инструмент 'update' с полностью обновлённым содержимым.
+   — Если пользователь хочет сохранить и завершить работу, то используй инструмент  'save' .
+   — Всегда отображай текущее состояние документа после внесения изменений.
 
-    The current document content is:{document_content}
+   Текущее содержимое документа:{document_content}
     """)
 
     # Если сообщений ещё нет — это первый запуск
