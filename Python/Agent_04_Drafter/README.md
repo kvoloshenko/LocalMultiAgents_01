@@ -153,6 +153,7 @@ app = graph.compile()
 cd venv\Scripts
 activate
 ```
+![command_01.png](Images/command_01.png)
 
 ### 2. Установка зависимостей (однократно)
 см.[requirements.txt](../../requirements.txt)
@@ -168,6 +169,7 @@ pip install -U "langgraph-cli[inmem]"
 ollama list
 ollama pull qwen3:latest
 ```
+![command_02.png](Images/command_02.png)
 
 ### 4. Переход в папку проекта `LocalMultiAgents_01` и запуск
 
@@ -175,6 +177,7 @@ ollama pull qwen3:latest
 cd ..\..\Python\Agent_04_Drafter
 python.exe Agent_04_Drafter.py
 ```
+![command_03.png](Images/command_03.png)
 
 Пример вывода см. в файле:
 [OutPut_01.txt](OutPut_01.txt)
