@@ -155,6 +155,7 @@ activate
 ```
 
 ### 2. Установка зависимостей (однократно)
+см.[requirements.txt](../../requirements.txt)
 
 ```bash
 pip install -r requirements.txt
