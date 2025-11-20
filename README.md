@@ -74,7 +74,6 @@ model = ChatOllama(model="qwen3:latest")
 **Архитектура:** одиночный агент с инструментами (Single Agent + Tools).
 
 * Подробнее: [`Python/Agent_04_Drafter/README.md`](Python/Agent_04_Drafter/README.md)
-* Код: [`Python/Agent_04_Drafter`](Python/Agent_04_Drafter)
 
 ---
 
@@ -109,7 +108,6 @@ model = ChatOllama(model="qwen3:latest")
 **Архитектура:** иерархическая мультиагентная система с централизованным управлением (Supervisor).
 
 * Подробнее: [`Python/Supervisor/README.md`](Python/Supervisor/README.md)
-* Код: [`Python/Supervisor`](Python/Supervisor)
 
 ---
 
@@ -137,7 +135,6 @@ model = ChatOllama(model="qwen3:latest")
 **Архитектура:** децентрализованный «рой» равноправных агентов, без единого центра управления.
 
 * Подробнее: [`Python/Swarm/README.md`](Python/Swarm/README.md)
-* Код: [`Python/Swarm`](Python/Swarm)
 
 ---
 
