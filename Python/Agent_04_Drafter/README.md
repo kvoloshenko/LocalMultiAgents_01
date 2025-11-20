@@ -15,8 +15,12 @@
 ### 📚 Использованы материалы:
 Учебный курс "LangGraph Complete Course for Beginners – Complex AI Agents with Python"  
 
-* Видео (English): [https://www.youtube.com/watch?v=jGg_1h0qzaM](https://www.youtube.com/watch?v=jGg_1h0qzaM)
+* Видео (English, 3 часа 10 минут): [https://www.youtube.com/watch?v=jGg_1h0qzaM](https://www.youtube.com/watch?v=jGg_1h0qzaM)
+* Фрагмент про Drafter (см. на 2-м часе 29 минут): https://youtu.be/jGg_1h0qzaM?si=Im3SNnyqjNa1VqS3&t=8952
+![youtube_drafter_01.png](Images/youtube_drafter_01.png)
+
 * Репозиторий: [https://github.com/iamvaibhavmehra/LangGraph-Course-freeCodeCamp](https://github.com/iamvaibhavmehra/LangGraph-Course-freeCodeCamp)
+* https://github.com/iamvaibhavmehra/LangGraph-Course-freeCodeCamp/blob/main/Agents/Drafter.py
 
 ---
 
@@ -62,11 +66,11 @@
 
 - Python **3.11**
 - **LangGraph** (`StateGraph`, `ToolNode`)
-- **LangChain-Ollama** (`ChatOllama(model="qwen3:latest")`)
 - **Ollama** + модель **Qwen3**:
-  ```bash
+```bash
   ollama pull qwen3:latest
-
+```
+![qwen3_latest.png](Images/qwen3_latest.png)
 ---
 
 ## 🔧 Краткий обзор кода
@@ -81,7 +85,7 @@ class AgentState(TypedDict):
 * В `messages` хранится история диалога (Human / AI / Tool / System сообщения).
 * `add_messages` аккуратно дописывает новые сообщения в историю.
 
-### Инструменты агента
+### Инструменты агента (tools)
 
 ```python
 @tool
@@ -143,37 +147,31 @@ app = graph.compile()
 
 ## 💻 Запуск проекта
 
-### 1. Подготовка окружения
-
-```bash
-cd C:\_AI\LocalMultiAgents_01
-
-# (однократно) установка зависимостей
-pip install -r requirements.txt
-pip install -U "langgraph-cli[inmem]"
-```
-
-Убедитесь, что:
-
-```bash
-ollama pull qwen3:latest
-```
-
-### 2. Активация виртуального окружения (Windows)
+### 1. Активация виртуального окружения (Windows)
 
 ```bash
 cd venv\Scripts
 activate
-cd ..\..
 ```
 
-Теперь вы снова в `C:\_AI\LocalMultiAgents_01`.
-
-### 3. Переход в папку проекта и запуск
+### 2. Установка зависимостей (однократно)
 
 ```bash
-cd Python\Agent_04_Drafter
+pip install -r requirements.txt
+pip install -U "langgraph-cli[inmem]"
+```
 
+### 3. Убедитесь, что в Ollama загружена требуемая LLM:
+
+```bash
+ollama list
+ollama pull qwen3:latest
+```
+
+### 4. Переход в папку проекта `LocalMultiAgents_01` и запуск
+
+```bash
+cd ..\..\Python\Agent_04_Drafter
 python.exe Agent_04_Drafter.py
 ```
 
