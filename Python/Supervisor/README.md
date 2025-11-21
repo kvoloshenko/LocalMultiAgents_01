@@ -203,44 +203,46 @@ pip install python-dotenv pillow
 
 ---
 
-## 🚀 Запуск проекта
-
-### Шаг 1. Активация виртуального окружения (Windows)
+## 💻 Запуск проекта
 
 ```bash
-cd C:\_AI\LocalMultiAgents_01\venv\Scripts
+cd venv\Scripts
 activate
-cd ..\..
+```
+![command_01.png](Images/command_01.png)
+
+### 2. Установка зависимостей (однократно)
+см.[requirements.txt](../../requirements.txt)
+
+```bash
+pip install -r requirements.txt
+pip install -U "langgraph-cli[inmem]"
 ```
 
-### Шаг 2. Переход в папку Supervisor и запуск
+### 3. Убедитесь, что в Ollama загружена требуемая LLM:
 
 ```bash
-cd Python\Supervisor
+ollama list
+ollama pull qwen3:latest
+```
+![command_02.png](Images/command_02.png)
 
+### 4. Переход в папку проекта `Supervisor` и запуск
+
+```bash
+cd ..\..\Python\Supervisor
 python.exe supervisor_math_research.py
 ```
+
+Пример вывода см. в файле:
+[OutPut_01.txt](OutPut_01.txt)
 
 После запуска:
 
 * откроется PNG с графом агентов;
 * в консоль выведется детальный диалог (включая tool-calls).
 
----
-
-## 🧪 LangGraph Studio
-
-Для визуальной отладки мультиагентного графа:
-
-```bash
-langgraph dev
-```
-
-Features:
-
-* визуальный граф агентов и переходов;
-* наблюдение за сообщениями и состояниями;
-* ручной запуск и отладка сценариев.
+![graph.png](Images/graph.png)
 
 ---
 
@@ -259,19 +261,27 @@ LANGCHAIN_PROJECT=multi-agent-supervisor-demo
 * все шаги выполнения будут доступны в веб-интерфейсе LangSmith;
 * можно видеть цепочку вызовов Supervisor → Agents → Tools.
 
-Пример ссылки (шаблон):
-
-* [https://smith.langchain.com/](https://smith.langchain.com/)...
-
-Скриншоты:
-
-![graph.png](Images/graph.png)
-
 ![DeBug_01.png](Images/DeBug_01.png)
+---
+
+## 🧪 Отладка через LangGraph Studio
+
+Для визуальной отладки мультиагентного графа:
+
+```bash
+langgraph dev
+```
+
+Features:
+
+* визуальный граф агентов и переходов;
+* наблюдение за сообщениями и состояниями;
+* ручной запуск и отладка сценариев.
 
 ![LangGraphStudio_01.png](Images/LangGraphStudio_01.png)
 
 ![LangGraphStudio_02.png](Images/LangGraphStudio_02.png)
+
 
 ---
 
