@@ -5,10 +5,10 @@
 ---
 
 > Основано на материале:  
-> 🎥 “Fully Local Multi-Agent Systems with LangGraph” — https://www.youtube.com/watch?v=4oC1ZKa9-Hs  
+> 🎥 “Fully Local Multi-Agent Systems with LangGraph” (Видео English 9 минут) — https://www.youtube.com/watch?v=4oC1ZKa9-Hs  
 > 📘 LangGraph Swarm: https://github.com/langchain-ai/langgraph-swarm-py  
 > 📘 LangGraph Supervisor: https://github.com/langchain-ai/langgraph-supervisor-py  
-> 📝 Конспект: https://mirror-feeling-d80.notion.site/...
+> 📝 Конспект: https://mirror-feeling-d80.notion.site/Fully-Local-Multi-Agent-1b5808527b178066bde0ed981b27998c.
 
 ---
 
@@ -19,8 +19,9 @@
 - 🧠 **Ollama** (локальная LLM `qwen3:latest`)
 - 🧩 **LangGraph Supervisor** (`langgraph_supervisor`)
 - 🔄 **ReAct-агентов** с инструментами
-- 🖼 **Визуализацию графа** (Mermaid → PNG через Pillow)
 - 🧪 **Интеграцию с LangSmith** (опционально)
+
+![Supervisor_01.png](Images/Supervisor_01.png)
 
 В системе есть два агента и Supervisor:
 

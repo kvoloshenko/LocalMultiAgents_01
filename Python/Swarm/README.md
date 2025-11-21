@@ -4,12 +4,11 @@
 
 ---
 
-> Основано на курсе:  
-> 📺 **“Fully Local Multi-Agent Systems with LangGraph”**  
-> https://www.youtube.com/watch?v=4oC1ZKa9-Hs  
->  
-> Конспект:  
-> https://mirror-feeling-d80.notion.site/Fully-Local-Multi-Agent-1b5808527b178066bde0ed981b27998c
+> Основано на материале:  
+> 🎥 “Fully Local Multi-Agent Systems with LangGraph” (Видео English 9 минут) — https://www.youtube.com/watch?v=4oC1ZKa9-Hs  
+> 📘 LangGraph Swarm: https://github.com/langchain-ai/langgraph-swarm-py  
+> 📘 LangGraph Supervisor: https://github.com/langchain-ai/langgraph-supervisor-py  
+> 📝 Конспект: https://mirror-feeling-d80.notion.site/Fully-Local-Multi-Agent-1b5808527b178066bde0ed981b27998c.
 
 ---
 
@@ -30,6 +29,7 @@
 - 🧩 **LangGraph Studio** (`langgraph dev`) для интерактивной отладки.
 - 🐞 **LangSmith** (опционально) для трассировки.
 
+![Swarm_01.png](Images/Swarm_01.png)
 ---
 
 ## 🧩 Что такое Swarm
