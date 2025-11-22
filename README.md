@@ -1,7 +1,7 @@
 # LocalMultiAgents_01  
 Local Multi-Agents: LangGraph, Ollama, Qwen3
 
-#№  Карта технологий и где мы находимся
+##  Карта технологий и где мы находимся
 
 
 ```mermaid
