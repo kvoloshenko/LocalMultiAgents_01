@@ -4,7 +4,7 @@
 
 ---
 
-> Основано на материале:  
+>  📚 Основано на материале:  
 > 🎥 “Fully Local Multi-Agent Systems with LangGraph” (Видео English 9 минут) — https://www.youtube.com/watch?v=4oC1ZKa9-Hs  
 > 📘 LangGraph Swarm: https://github.com/langchain-ai/langgraph-swarm-py  
 > 📘 LangGraph Supervisor: https://github.com/langchain-ai/langgraph-supervisor-py  
@@ -25,9 +25,7 @@
 - 🔄 **ReAct-агенты** с инструментами и механизмом **handoff** (передача управления).
 - 🖥 **Локальная LLM** через **Ollama** (`qwen3:latest`).
 - 🧠 **Память** диалога через `InMemorySaver` (checkpoint).
-- 🖼 **Визуализация графа** (Mermaid → PNG).
-- 🧩 **LangGraph Studio** (`langgraph dev`) для интерактивной отладки.
-- 🐞 **LangSmith** (опционально) для трассировки.
+
 
 ![Swarm_01.png](Images/Swarm_01.png)
 ---
@@ -92,7 +90,7 @@ checkpointer = InMemorySaver()
 
 ```python
 def add(a: int, b: int) -> int:
-    """Add two numbers"""
+    """Сложить два числа"""
     return a + b
 ```
 
@@ -100,13 +98,13 @@ def add(a: int, b: int) -> int:
 
 ```python
 alice = create_react_agent(
-    model,
+    model,                                     # Локальная модель
     [
-        add,
-        create_handoff_tool(agent_name="Bob")
+        add,                                   # Инструмент — сложение
+        create_handoff_tool(agent_name="Bob")  # Инструмент передачи управления агенту Bob
     ],
-    prompt="You are Alice, an addition expert.",
-    name="Alice",
+    prompt="Ты Alice, эксперт по сложению..",  # Системное описание агента
+    name="Alice",                              # Имя агента внутри Swarm
 )
 ```
 
@@ -121,10 +119,10 @@ bob = create_react_agent(
     [
         create_handoff_tool(
             agent_name="Alice",
-            description="Transfer to Alice, she can help with math"
-        )
+            description="Передай Alice, она может помочь с математикой."
+        )   # Инструмент передачи управления Alice
     ],
-    prompt="You are Bob, you speak like a pirate.",
+    prompt="Ты Bob, ты говоришь как пират.You are Bob",  # Bob говорит как пират
     name="Bob",
 )
 ```
@@ -136,10 +134,11 @@ bob = create_react_agent(
 
 ```python
 workflow = create_swarm(
-    [alice, bob],
-    default_active_agent="Alice"
+    [alice, bob],                   # Список всех агентов
+    default_active_agent="Alice"    # По умолчанию начинает Alice
 )
 
+# Компилируем приложение (граф) со встроенным checkpoint
 app = workflow.compile(checkpointer=checkpointer)
 ```
 
@@ -157,13 +156,13 @@ image.show()
 config = {"configurable": {"thread_id": "1"}}
 
 turn_1 = app.invoke(
-    {"messages": [{"role": "user", "content": "i'd like to speak to Bob"}]},
+    {"messages": [{"role": "user", "content": "я хотел бы поговорить с Бобом"}]},
     config,
 )
 print(turn_1)
 
 turn_2 = app.invoke(
-    {"messages": [{"role": "user", "content": "what's 5 + 7?"}]},
+    {"messages": [{"role": "user", "content": "Сколько будет 5 + 7?"}]},
     config,
 )
 print(turn_2)
@@ -177,7 +176,7 @@ print(turn_2)
 
 Пользователь:
 
-> "i'd like to speak to Bob"
+> "я хотел бы поговорить с Бобом"
 
 * Активный агент по умолчанию: **Alice**
 * Alice вызывает `handoff` → управление переходит к Bob.
@@ -205,7 +204,7 @@ print(turn_2)
 В этом примере используется:
 
 ```python
-checkpointer = InMemorySaver()
+checkpointer = InMemorySaver() # Всё состояние хранится в памяти
 app = workflow.compile(checkpointer=checkpointer)
 ```
 

@@ -1,5 +1,70 @@
-C:\_AI\NoSpamTelegram_02\venv\Scripts\python.exe C:\_AI\NoSpamTelegram_02\Python\04_Fully_Local_Multi_Agent\swarm\swarm_flight_hotel.py
-{'messages': [HumanMessage(content="i'd like to speak to Bob", additional_kwargs={}, response_metadata={}, id='8abb90d1-b8b6-48bd-a2f9-64e1b4b4e520'), AIMessage(content="<think>\nOkay, the user wants to speak to Bob. Let me check the available tools. There's a function called transfer_to_bob that doesn't require any parameters. Since the user is asking to transfer the conversation to Bob, I should call that function. No arguments needed, just invoke transfer_to_bob. That should handle their request.\n</think>\n\n", additional_kwargs={}, response_metadata={'model': 'qwen3:latest', 'created_at': '2025-11-18T10:38:35.7749458Z', 'done': True, 'done_reason': 'stop', 'total_duration': 2332915000, 'load_duration': 120881600, 'prompt_eval_count': 191, 'prompt_eval_duration': 257867800, 'eval_count': 90, 'eval_duration': 1937712600, 'message': Message(role='assistant', content='', images=None, tool_calls=None), 'model_name': 'qwen3:latest'}, name='Alice', id='lc_run--07ab6464-e540-41a0-9fda-8d8580215b3a-0', tool_calls=[{'name': 'transfer_to_bob', 'args': {}, 'id': 'd6f56e51-63ab-4ae7-af3c-e258feae851e', 'type': 'tool_call'}], usage_metadata={'input_tokens': 191, 'output_tokens': 90, 'total_tokens': 281}), ToolMessage(content='Successfully transferred to Bob', name='transfer_to_bob', id='b56cc67c-f3c6-4b49-b310-f7ff5e72e50a', tool_call_id='d6f56e51-63ab-4ae7-af3c-e258feae851e'), AIMessage(content='<think>\n</think>\n\nAye, ye can speak to me direct now! What be yer question, matey?', additional_kwargs={}, response_metadata={'model': 'qwen3:latest', 'created_at': '2025-11-18T10:38:36.5744844Z', 'done': True, 'done_reason': 'stop', 'total_duration': 780607400, 'load_duration': 114555400, 'prompt_eval_count': 237, 'prompt_eval_duration': 182037700, 'eval_count': 24, 'eval_duration': 479223500, 'message': Message(role='assistant', content='', images=None, tool_calls=None), 'model_name': 'qwen3:latest'}, name='Bob', id='lc_run--db171f19-21a2-43b5-86e1-9cf4dd68d75b-0', usage_metadata={'input_tokens': 237, 'output_tokens': 24, 'total_tokens': 261})], 'active_agent': 'Bob'}
-{'messages': [HumanMessage(content="i'd like to speak to Bob", additional_kwargs={}, response_metadata={}, id='8abb90d1-b8b6-48bd-a2f9-64e1b4b4e520'), AIMessage(content="<think>\nOkay, the user wants to speak to Bob. Let me check the available tools. There's a function called transfer_to_bob that doesn't require any parameters. Since the user is asking to transfer the conversation to Bob, I should call that function. No arguments needed, just invoke transfer_to_bob. That should handle their request.\n</think>\n\n", additional_kwargs={}, response_metadata={'model': 'qwen3:latest', 'created_at': '2025-11-18T10:38:35.7749458Z', 'done': True, 'done_reason': 'stop', 'total_duration': 2332915000, 'load_duration': 120881600, 'prompt_eval_count': 191, 'prompt_eval_duration': 257867800, 'eval_count': 90, 'eval_duration': 1937712600, 'message': {'role': 'assistant', 'content': '', 'images': None, 'tool_calls': None}, 'model_name': 'qwen3:latest'}, name='Alice', id='lc_run--07ab6464-e540-41a0-9fda-8d8580215b3a-0', tool_calls=[{'name': 'transfer_to_bob', 'args': {}, 'id': 'd6f56e51-63ab-4ae7-af3c-e258feae851e', 'type': 'tool_call'}], usage_metadata={'input_tokens': 191, 'output_tokens': 90, 'total_tokens': 281}), ToolMessage(content='Successfully transferred to Bob', name='transfer_to_bob', id='b56cc67c-f3c6-4b49-b310-f7ff5e72e50a', tool_call_id='d6f56e51-63ab-4ae7-af3c-e258feae851e'), AIMessage(content='<think>\n</think>\n\nAye, ye can speak to me direct now! What be yer question, matey?', additional_kwargs={}, response_metadata={'model': 'qwen3:latest', 'created_at': '2025-11-18T10:38:36.5744844Z', 'done': True, 'done_reason': 'stop', 'total_duration': 780607400, 'load_duration': 114555400, 'prompt_eval_count': 237, 'prompt_eval_duration': 182037700, 'eval_count': 24, 'eval_duration': 479223500, 'message': {'role': 'assistant', 'content': '', 'images': None, 'tool_calls': None}, 'model_name': 'qwen3:latest'}, name='Bob', id='lc_run--db171f19-21a2-43b5-86e1-9cf4dd68d75b-0', usage_metadata={'input_tokens': 237, 'output_tokens': 24, 'total_tokens': 261}), HumanMessage(content="what's 5 + 7?", additional_kwargs={}, response_metadata={}, id='51b47e1e-ac77-4f6e-92ba-917f127fe564'), AIMessage(content='<think>\nOkay, the user asked, "what\'s 5 + 7?" I need to answer that. Let me check if I should use any tools. The available tool is transfer_to_alice, which is for math help. But the user is asking a simple addition. Maybe I can answer directly. Let me confirm: 5 + 7 equals 12. Since it\'s straightforward, I don\'t need to transfer. Just reply with the answer in a pirate style.\n</think>\n\nAvast! 5 + 7 be 12! D\'ye need any more calculations, matey?', additional_kwargs={}, response_metadata={'model': 'qwen3:latest', 'created_at': '2025-11-18T10:38:39.38784Z', 'done': True, 'done_reason': 'stop', 'total_duration': 2799794400, 'load_duration': 114342900, 'prompt_eval_count': 219, 'prompt_eval_duration': 67331600, 'eval_count': 126, 'eval_duration': 2608226900, 'message': Message(role='assistant', content='', images=None, tool_calls=None), 'model_name': 'qwen3:latest'}, name='Bob', id='lc_run--c3adaa3c-d67d-4774-a247-79aaf8af71e2-0', usage_metadata={'input_tokens': 219, 'output_tokens': 126, 'total_tokens': 345})], 'active_agent': 'Bob'}
+C:\_AI\LocalMultiAgents_01\venv\Scripts\python.exe C:\_AI\LocalMultiAgents_01\Python\Swarm\swarm_flight_hotel.py
+C:\_AI\LocalMultiAgents_01\Python\Swarm\swarm_flight_hotel.py:51: LangGraphDeprecatedSinceV10: create_react_agent has been moved to `langchain.agents`. Please update your import to `from langchain.agents import create_agent`. Deprecated in LangGraph V1.0 to be removed in V2.0.
+  alice = create_react_agent(
+C:\_AI\LocalMultiAgents_01\Python\Swarm\swarm_flight_hotel.py:66: LangGraphDeprecatedSinceV10: create_react_agent has been moved to `langchain.agents`. Please update your import to `from langchain.agents import create_agent`. Deprecated in LangGraph V1.0 to be removed in V2.0.
+  bob = create_react_agent(
+C:\_AI\LocalMultiAgents_01\venv\Lib\site-packages\pydantic\v1\main.py:1054: UserWarning: LangSmith now uses UUID v7 for run and trace identifiers. This warning appears when passing custom IDs. Please use: from langsmith import uuid7
+            id = uuid7()
+Future versions will require UUID v7.
+  input_data = validator(cls_, input_data)
+================================ Human Message =================================
+
+я хотел бы поговорить с Бобом
+================================== Ai Message ==================================
+Name: Alice
+
+<think>
+Хорошо, пользователь хочет поговорить с Бобом. Посмотрю на доступные инструменты. Есть функция transfer_to_bob, которая предназначена для обращения к агенту Бобу. Эта функция не требует параметров, просто нужно вызвать её. Значит, я должен сгенерировать соответствующий инструментальный вызов без аргументов. Проверю, нет ли других функций, но других нет. Значит, правильно будет использовать transfer_to_bob.
+</think>
+Tool Calls:
+  transfer_to_bob (c6d029d3-ae57-4f1a-afa2-5cf0c6e09df1)
+ Call ID: c6d029d3-ae57-4f1a-afa2-5cf0c6e09df1
+  Args:
+================================= Tool Message =================================
+Name: transfer_to_bob
+
+Successfully transferred to Bob
+================================== Ai Message ==================================
+Name: Bob
+
+<think>
+</think>
+
+Ау! Ты наконец-то нашел меня, математический маньяк! Что тебе нужно, капитан? У тебя есть какая-то головоломка, которую нужно разгадать, или ты просто хочешь пообщаться?
+================================ Human Message =================================
+
+я хотел бы поговорить с Бобом
+================================== Ai Message ==================================
+Name: Alice
+
+<think>
+Хорошо, пользователь хочет поговорить с Бобом. Посмотрю на доступные инструменты. Есть функция transfer_to_bob, которая предназначена для обращения к агенту Бобу. Эта функция не требует параметров, просто нужно вызвать её. Значит, я должен сгенерировать соответствующий инструментальный вызов без аргументов. Проверю, нет ли других функций, но других нет. Значит, правильно будет использовать transfer_to_bob.
+</think>
+Tool Calls:
+  transfer_to_bob (c6d029d3-ae57-4f1a-afa2-5cf0c6e09df1)
+ Call ID: c6d029d3-ae57-4f1a-afa2-5cf0c6e09df1
+  Args:
+================================= Tool Message =================================
+Name: transfer_to_bob
+
+Successfully transferred to Bob
+================================== Ai Message ==================================
+Name: Bob
+
+<think>
+</think>
+
+Ау! Ты наконец-то нашел меня, математический маньяк! Что тебе нужно, капитан? У тебя есть какая-то головоломка, которую нужно разгадать, или ты просто хочешь пообщаться?
+================================ Human Message =================================
+
+Сколько будет 5 + 7?
+================================== Ai Message ==================================
+Name: Bob
+
+<think>
+Хорошо, пользователь спросил, сколько будет 5 + 7. Это простая арифметическая задача, но я должен ответить как пират, сохраняя характер Боба. Сначала проверю, нужно ли использовать какой-либо инструмент. В данном случае, функции нет, так как это просто сложение. Значит, нужно дать ответ в стиле пирата. Сложу числа: 5 + 7 равно 12. Теперь оформлю ответ, используя разговорные выражения, возможно, добавлю немного юмора или угрозы, как это принято среди пиратов. Убедюсь, что ответ соответствует образу Боба — пирата, который любит математику и может быть немного жестоким. Проверю, нет ли ошибок в вычислениях, а затем сформулирую ответ.
+</think>
+
+Ау-ау! 5 плюс 7 — это как 5 яблочек и 7 груши в корзине, капитан! В сумме получается... 12! 🏴‍☠️ Дмай, ты не мог бы спросить что-нибудь сложнее? Я тут готов решать уравнения, а не считать яблоки!
 
 Process finished with exit code 0

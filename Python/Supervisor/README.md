@@ -4,7 +4,7 @@
 
 ---
 
-> Основано на материале:  
+>  📚 Основано на материале:  
 > 🎥 “Fully Local Multi-Agent Systems with LangGraph” (Видео English 9 минут) — https://www.youtube.com/watch?v=4oC1ZKa9-Hs  
 > 📘 LangGraph Swarm: https://github.com/langchain-ai/langgraph-swarm-py  
 > 📘 LangGraph Supervisor: https://github.com/langchain-ai/langgraph-supervisor-py  
