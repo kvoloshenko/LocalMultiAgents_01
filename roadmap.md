@@ -14,8 +14,8 @@ flowchart LR
     U([Пользователь])
 
     %% === Level 1 ===
-    U -- "периодические задачи" --> W["Использование web-чатов"]
-    U -- "повторяемые однотипные задачи" --> A["Автоматизация AI Agents"]
+    U -- "периодические<br/>задачи" --> W["Использование web-чатов"]
+    U -- "повторяемые<br/>однотипные задачи" --> A["Автоматизация AI Agents"]
 
     %% === Level 2A — Web Chats ===
     W --> W1["ChatGPT"]
@@ -62,6 +62,5 @@ flowchart LR
 
     %% Highlight current-focus nodes
     class PR,P2,FG1 current
-
 
 ````
