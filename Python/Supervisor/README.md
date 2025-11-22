@@ -125,14 +125,16 @@ math_agent = create_react_agent(
     model=model,
     tools=[add, multiply],
     name="math_expert",
-    prompt="You are a math expert. Always use one tool at a time."
+    prompt=("Ты эксперт в математике. "
+            "Всегда используй только один инструмент за раз.")
 )
 
 research_agent = create_react_agent(
     model=model,
     tools=[web_search],
     name="research_expert",
-    prompt="You are a world class researcher with access to web search. Do not do any math."
+    prompt=("Ты — исследователь мирового уровня с доступом к веб-поиску. "
+            "Не занимайся математикой.")
 )
 ```
 
@@ -145,9 +147,9 @@ workflow = create_supervisor(
     [research_agent, math_agent],
     model=model,
     prompt=(
-        "You are a team Supervisor managing a research expert and a math expert. "
-        "For current events, use research_agent. "
-        "For math problems, use math_agent."
+        "Ты — Supervisor, управляющий научным экспертом и экспертом по математике."
+        "Для текущих событий используй research_agent."
+        "Для математических задач используйте math_agent."
     )
 )
 

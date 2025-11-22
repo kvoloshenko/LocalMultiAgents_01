@@ -60,12 +60,12 @@ def web_search(query: str) -> str:
     Возвращает заранее подготовленные данные — численность сотрудников FAANG в 2024 году.
     """
     return (
-        "Here are the headcounts for each of the FAANG companies in 2024:\n"
-        "1. **Facebook (Meta)**: 67,317 employees.\n"
-        "2. **Apple**: 164,000 employees.\n"
-        "3. **Amazon**: 1,551,000 employees.\n"
-        "4. **Netflix**: 14,000 employees.\n"
-        "5. **Google (Alphabet)**: 181,269 employees."
+        "Вот численность персонала каждой из компаний FAANG в 2024 году:\n:\n"
+        "1. **Facebook (Meta)**: 67,317 сотрудников.\n"
+        "2. **Apple**: 164,000 сотрудников.\n"
+        "3. **Amazon**: 1,551,000 сотрудников.\n"
+        "4. **Netflix**: 14,000 сотрудников.\n"
+        "5. **Google (Alphabet)**: 181,269 сотрудников."
     )
 
 # =============================================
@@ -76,15 +76,10 @@ math_agent = create_react_agent(
     model=model,              # LLM, управляющая агентом
     tools=[add, multiply],    # Инструменты: сложение и умножение
     name="math_expert",       # Имя агента
-    prompt="You are a math expert. Always use one tool at a time."  # Системный промт
+    prompt=("Ты эксперт в математике. "
+            "Всегда используй только один инструмент за раз."
+            "Отвечай всегда по-русски")  # Системный промт
 )
-
-# math_agent = create_agent(
-#     model=model,              # LLM, управляющая агентом
-#     tools=[add, multiply],    # Инструменты: сложение и умножение
-#     name="math_expert",       # Имя агента
-#     system_prompt="You are a math expert. Always use one tool at a time."  # Системный промт
-# )
 
 # ======================================================
 # Создаём ReAct-агента для исследовательских запросов
@@ -94,15 +89,11 @@ research_agent = create_react_agent(
     model=model,
     tools=[web_search],       # Инструмент: поиск в интернете (симуляция)
     name="research_expert",
-    prompt="You are a world class researcher with access to web search. Do not do any math."
+    prompt=("Ты — исследователь мирового уровня с доступом к веб-поиску. "
+            "Не занимайся математикой."
+            "Отвечай всегда по-русски") # Системный промт
 )
 
-# research_agent = create_agent(
-#     model=model,
-#     tools=[web_search],       # Инструмент: поиск в интернете (симуляция)
-#     name="research_expert",
-#     system_prompt="You are a world class researcher with access to web search. Do not do any math."
-# )
 
 # ==================================================
 # Создание супервизора, который управляет агентами
@@ -110,11 +101,12 @@ research_agent = create_react_agent(
 
 workflow = create_supervisor(
     [research_agent, math_agent],     # Супервизор может выбирать между этими агентами
-    model=model,                      # LLM, принимающая решения супервизора
+    model=model,                             # LLM, принимающая решения супервизора
     prompt=(
-        "You are a team Supervisor managing a research expert and a math expert. "
-        "For current events, use research_agent. "
-        "For math problems, use math_agent."
+      "Ты — Supervisor, управляющий научным экспертом и экспертом по математике."
+      "Для текущих событий используй research_agent."
+      "Для математических задач используйте math_agent."
+      "Отвечай всегда по-русски"
     )
 )
 
