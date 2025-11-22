@@ -142,14 +142,6 @@ workflow = create_swarm(
 app = workflow.compile(checkpointer=checkpointer)
 ```
 
-### Визуализация графа
-
-```python
-graph_bytes = app.get_graph().draw_mermaid_png()
-image = PILImage.open(BytesIO(graph_bytes))
-image.show()
-```
-
 ### Диалог в одной сессии (`thread_id`)
 
 ```python
@@ -219,40 +211,42 @@ app = workflow.compile(checkpointer=checkpointer)
 
 * Python **3.11**
 * Установленный **Ollama**
-* Локальная модель:
+* Локальная модель: qwen3:latest
 
-```bash
-ollama pull qwen3:latest
-```
 
-### 2. Установка зависимостей
-
-(из корня репозитория)
-
-```bash
-cd C:\_AI\LocalMultiAgents_01
-
-pip install -r requirements.txt
-pip install -U "langgraph-cli[inmem]"
-pip install langgraph-swarm langchain-ollama pillow python-dotenv
-```
-
----
-
-## 🚀 Запуск проекта
+## 💻 Запуск проекта
 
 ### Шаг 1. Активировать виртуальное окружение (Windows)
 
 ```bash
-cd C:\_AI\LocalMultiAgents_01\venv\Scripts
+cd venv\Scripts
 activate
 cd ..\..
 ```
+![command_01.png](Images/command_01.png)
 
-### Шаг 2. Перейти в папку Swarm и запустить пример
+
+### 2. Установка зависимостей (однократно)
+см.[requirements.txt](../../requirements.txt)
 
 ```bash
-cd Python\Swarm
+pip install -r requirements.txt
+pip install -U "langgraph-cli[inmem]"
+```
+
+### 3. Убедитесь, что в Ollama загружена требуемая LLM:
+
+```bash
+ollama list
+ollama pull qwen3:latest
+```
+![command_02.png](Images/command_02.png)
+
+
+### Шаг 4. Перейти в папку Swarm и запустить пример
+
+```bash
+cd ..\..\Python\Swarm
 
 python.exe swarm_flight_hotel.py
 ```
@@ -260,22 +254,34 @@ python.exe swarm_flight_hotel.py
 После этого:
 
 * откроется PNG с графом агентов (Alice ↔ Bob);
-* в консоль будут выведены результаты `turn_1` и `turn_2`.
 
-Скриншоты:
 ![swarm_flight_hotel_graph.PNG](Images/swarm_flight_hotel_graph.PNG)
 
-![DeBug_01.png](Images/DeBug_01.png)
+* в консоль будут выведены результаты `turn_1` и `turn_2`.
 
-![DeBug_02.png](Images/DeBug_02.png)
-
-![DeBug_03.png](Images/DeBug_03.png)
-
-![DeBug_04.png](Images/DeBug_04.png)
+Пример вывода см. в файле:
+[output_01.txt](output_01.txt)
 
 ---
+## 🐞 Отладка через LangSmith (опционально)
 
-## 🧩 LangGraph Studio
+В `.env` можно указать:
+
+```env
+LANGSMITH_API_KEY=...
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_PROJECT=multi-agent-supervisor-demo
+```
+
+После этого:
+
+* все шаги выполнения будут доступны в веб-интерфейсе LangSmith;
+* можно видеть цепочку вызовов Supervisor → Agents → Tools.
+
+![DeBug_01.png](Images/DeBug_01.png)
+---
+
+## 🧩 Отладка через LangGraph Studio
 
 Для визуальной работы с графом:
 
@@ -290,33 +296,11 @@ langgraph dev
   * запускать и отлаживать сценарии Swarm;
   * анализировать шаги и сообщения.
 
----
+![DeBug_02.png](Images/DeBug_02.png)
 
-## 🐞 Отладка через LangSmith (опционально)
+![DeBug_03.png](Images/DeBug_03.png)
 
-Добавьте в `.env`:
-
-```env
-LANGCHAIN_TRACING_V2=true
-LANGSMITH_API_KEY=...
-LANGCHAIN_PROJECT="AliceBobSwarm"
-```
-
-После этого:
-
-* все вызовы `app.invoke` будут логироваться в LangSmith;
-* можно подробно анализировать handoff и работу агентов.
-
----
-
-## 📚 Полезные ресурсы
-
-* LangGraph Swarm: [https://github.com/langchain-ai/langgraph-swarm-py](https://github.com/langchain-ai/langgraph-swarm-py)
-* LangGraph Supervisor: [https://github.com/langchain-ai/langgraph-supervisor-py](https://github.com/langchain-ai/langgraph-supervisor-py)
-* Документация по multi-agent: [https://langchain-ai.github.io/langgraph/concepts/multi_agent](https://langchain-ai.github.io/langgraph/concepts/multi_agent)
-* Видео-курс: [https://www.youtube.com/watch?v=4oC1ZKa9-Hs](https://www.youtube.com/watch?v=4oC1ZKa9-Hs)
-* Конспект: [https://mirror-feeling-d80.notion.site/Fully-Local-Multi-Agent-1b5808527b178066bde0ed981b27998c](https://mirror-feeling-d80.notion.site/Fully-Local-Multi-Agent-1b5808527b178066bde0ed981b27998c)
-
+![DeBug_04.png](Images/DeBug_04.png)
 ---
 
 ## 🎯 Итоги

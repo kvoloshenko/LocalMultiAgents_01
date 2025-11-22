@@ -156,13 +156,6 @@ workflow = create_supervisor(
 app = workflow.compile()
 ```
 
-### Визуализация графа
-
-```python
-graph_bytes = app.get_graph().draw_mermaid_png()
-image = PILImage.open(BytesIO(graph_bytes))
-image.show()
-```
 
 ### Вызов системы
 
@@ -206,6 +199,8 @@ pip install python-dotenv pillow
 ---
 
 ## 💻 Запуск проекта
+
+### Шаг 1. Активировать виртуальное окружение (Windows)
 
 ```bash
 cd venv\Scripts
