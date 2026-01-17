@@ -153,9 +153,6 @@ Multi-Agent имеют смысл, когда:
 
 ## 🧭 Паттерн 4: Маршрутизатор (Router)
 
-![Image](https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/hierarchical_task_decomposition_agent.original.png)
-
-![Image](https://cdn.shopify.com/s/files/1/0662/5667/files/DSC01313_3_Crop.jpg?3296533037150924074=)
 
 ### Как работает
 
@@ -185,9 +182,6 @@ Router и Synthesizer могут быть:
 
 ## 📊 Сводная таблица: собираем всё вместе
 
-![Image](https://spkurdyumov.ru/uploads/2015/10/181015_8.jpg)
-
-![Image](https://miro.medium.com/v2/resize%3Afit%3A1200/1%2AUwa8bfgtFhBRJ-Nrv9t-_w.png)
 
 | Паттерн   | Распределённая разработка | Параллелизация | Multi-hop | Прямое общение |
 | --------- | ------------------------- | -------------- | --------- | -------------- |
